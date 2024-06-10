@@ -13,7 +13,7 @@ import vendorRoutes from './routes/vendorApi.route.js';
 const app = express();
 
 app.use(cors({
-  origin: 'https://main--xeno-crm.netlify.app', // Replace with your actual Netlify domain
+  origin: 'https://mini-bvt9djy9x-yuvis-projects-d26400e4.vercel.app/', // Replace with your actual Netlify domain
   credentials: true,
 }));
 app.use(express.json());
