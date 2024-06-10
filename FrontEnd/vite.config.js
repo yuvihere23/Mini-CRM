@@ -7,8 +7,10 @@ export default defineConfig({
     proxy: {
       '/api': {
         target: 'https://mini-crm-6gp2.onrender.com',
-        secure: true,
-      },
+        changeOrigin: true,
+        secure: false,
+        rewrite: (path) => path.replace(/^\/api/, '')
+      }
     },
   },
   plugins: [react()],
