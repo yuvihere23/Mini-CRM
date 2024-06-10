@@ -72,7 +72,7 @@ export const login = async (req, res, next) => {
 };
 
 export const google = async (req, res, next) => {
-  const { name, email, googlePhotoUrl } = req.body;
+  const { name, email } = req.body;
 
   try {
     const user = await User.findOne({ email });
