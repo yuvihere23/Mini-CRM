@@ -26,7 +26,7 @@ export default function CampaignList() {
 
   const handleSendCampaign = async (campaignId) => {
     try {
-      const response = await axios.post(`/api/campaigns/send/${campaignId}`);
+      const response = await axios.post(`${import.meta.env.VITE_API_URL}/api/campaigns/send/${campaignId}`);
       alert('Campaign sent successfully!');
       // Refresh the campaigns list to reflect any updates
       const updatedResponse = await axios.get('/api/campaigns/list');
