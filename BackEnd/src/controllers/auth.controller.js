@@ -6,28 +6,17 @@ import jwt from "jsonwebtoken";
 export const signup = async (req, res, next) => {
   const { username, email, password } = req.body;
 
-  if (
-    !username ||
-    !email ||
-    !password ||
-    username === "" ||
-    email === "" ||
-    password === ""
-  ) {
-    next(new ApiError(400, "All fields are required!"));
+  if (!username || !email || !password) {
+    return next(new ApiError(400, "All fields are required!"));
   }
 
   const hashedPassword = bcryptjs.hashSync(password, 10);
 
-  const newUser = new User({
-    username,
-    email,
-    password: hashedPassword,
-  });
+  const newUser = new User({ username, email, password: hashedPassword });
 
   try {
     await newUser.save();
-    res.json("Signup Successfull!");
+    res.json({ message: "Signup Successful!" });
   } catch (error) {
     next(error);
   }
@@ -53,7 +42,6 @@ export const login = async (req, res, next) => {
       return next(new ApiError(400, "Invalid pasword!"));
     }
 
-    // console.log('JWT_SECRET:', process.env.JWT_SECRET);
 
     const token = jwt.sign({ id: validUser._id }, process.env.JWT_SECRET);
 
