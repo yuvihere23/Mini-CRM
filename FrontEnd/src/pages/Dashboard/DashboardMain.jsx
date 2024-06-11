@@ -14,18 +14,18 @@ export default function Dashboard() {
     const fetchData = async () => {
       try {
         // Fetch customer count
-        const customerResponse = await fetch("/api/customer/getCustomerCount");
+        const customerResponse = await fetch(`${import.meta.env.VITE_API_URL}/api/customer/getCustomerCount`);
         console.log('customerResponse:', customerResponse);
         const customerData = await customerResponse.json();
         setCustomerCount(customerData.count);
 
         // Fetch order count
-        const orderResponse = await fetch("/api/order/count");
+        const orderResponse = await fetch(`${import.meta.env.VITE_API_URL}/api/order/count`);
         const orderData = await orderResponse.json();
         setOrderCount(orderData.count);
 
         // Fetch campaign count
-        const campaignResponse = await fetch("/api/campaigns/list");
+        const campaignResponse = await fetch(`${import.meta.env.VITE_API_URL}/api/campaigns/list`);
         const campaignData = await campaignResponse.json();
         setCampaignCount(campaignData.count);
       } catch (error) {

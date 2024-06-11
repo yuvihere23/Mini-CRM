@@ -8,7 +8,7 @@ const CommunicationLogCard = () => {
     // Fetch communication logs from the backend API
     const fetchCommunicationLogs = async () => {
       try {
-        const response = await axios.get('/api/communications/logs');
+        const response = await axios.get(`${import.meta.env.VITE_API_URL}/api/communications/logs`);
         setCommunicationLogs(response.data.logs);
       } catch (error) {
         console.error('Error fetching communication logs:', error);

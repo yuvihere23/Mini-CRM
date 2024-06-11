@@ -10,7 +10,7 @@ export default function CampaignList() {
   useEffect(() => {
     const fetchCampaigns = async () => {
       try {
-        const response = await axios.get('/api/campaigns/list');
+        const response = await axios.get(`${import.meta.env.VITE_API_URL}/api/campaigns/list`);
         setCampaigns(response.data.campaigns);
         setLoading(false);
       } catch (error) {
