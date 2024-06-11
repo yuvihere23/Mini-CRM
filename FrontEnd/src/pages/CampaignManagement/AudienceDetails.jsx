@@ -29,7 +29,7 @@ export default function CampaignList() {
       const response = await axios.post(`${import.meta.env.VITE_API_URL}/api/campaigns/send/${campaignId}`);
       alert('Campaign sent successfully!');
       // Refresh the campaigns list to reflect any updates
-      const updatedResponse = await axios.get('/api/campaigns/list');
+      const updatedResponse = await axios.get(`${import.meta.env.VITE_API_URL}/api/campaigns/list`);
       setCampaigns(updatedResponse.data.campaigns);
     } catch (error) {
       console.error('Error sending campaign:', error); // Log the error
@@ -39,7 +39,7 @@ export default function CampaignList() {
 
   const handleViewAudienceSize = async (campaignId) => {
     try {
-      const response = await axios.get(`/api/campaigns/audience-size/${campaignId}`);
+      const response = await axios.get(`${import.meta.env.VITE_API_URL}/api/campaigns/audience-size/${campaignId}`);
       alert(`Total Audience Size: ${response.data.audienceSize}`);
     } catch (error) {
       console.error('Error getting audience size:', error); // Log the error
