@@ -11,7 +11,7 @@ import vendorRoutes from './routes/vendorApi.route.js';
 
 
 const app = express();
-const allowedOrigin = 'https://mini-4rekv5v6o-yuvis-projects-d26400e4.vercel.app'; 
+const allowedOrigin = 'https://mini-9ipyp4yae-yuvis-projects-d26400e4.vercel.app'; 
 
 app.use(cors({
   origin: allowedOrigin, // Replace with your actual Netlify domain
