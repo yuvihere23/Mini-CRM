@@ -1,10 +1,10 @@
-// routes/vendor.routes.js
+// routes/vendorApi.route.js
 import express from 'express';
-import { sendBulkMessages, handleDeliveryReceipt } from '../middelwares/vendorApi.js';
+import { sendBulkMessages, deliveryReceipt } from '../middelwares/vendorApi.js';
 
 const router = express.Router();
 
 router.post('/send-bulk-messages', sendBulkMessages);
-router.post('/delivery-receipt', handleDeliveryReceipt);
+router.post('/delivery-receipt', deliveryReceipt);
 
 export default router;

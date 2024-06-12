@@ -1,53 +1,55 @@
-// controllers/vendor.controller.js
 import axios from 'axios';
-import CommunicationLog from '../model/communicationLogs.model.js'
+import CommunicationLog from '../model/communicationLogs.model.js';
 
 export const sendBulkMessages = async (req, res) => {
-  const { campaignId, customers } = req.body;
+    const { campaignId, customers } = req.body;
 
-  try {
-    const logs = await Promise.all(customers.map(async (customer) => {
-      const message = `Hi ${customer.name}, here is 10% off on your next order`;
-
-      
-      const status = Math.random() < 0.9 ? 'SENT' : 'FAILED';
-      const log = new CommunicationLog({
-        campaignId,
-        customerId: customer._id,
-        status,
-        message,
-      });
-
-      await log.save();
-      console.log('Message sent:', message);    
-
-      // Call the Delivery Receipt API
-      await axios.post('http://localhost:5000/api/vendor/delivery-receipt', { logId: log._id, status });
-
-      return log;
-    }));
-
-    res.status(200).json({ message: 'Messages sent successfully', logs });
-  } catch (error) {
-    res.status(500).json({ message: 'Error sending messages', error });
-  }
-};
-// controllers/vendor.controller.js (continued)
-export const handleDeliveryReceipt = async (req, res) => {
-    const { logId, status } = req.body;
-  
     try {
-      const log = await CommunicationLog.findById(logId);
-      if (!log) {
-        return res.status(404).json({ message: 'Communication log not found' });
-      }
-  
-      log.status = status;
-      await log.save();
-  
-      res.status(200).json({ message: 'Delivery receipt updated successfully', log });
+        console.log(`Sending bulk messages for campaignId: ${campaignId}`);
+        const logs = [];
+        for (const customer of customers) {
+            const message = `Hi ${customer.name}, here is 10% off on your next order`;
+            console.log(`Sending message to customer: ${customer._id}, message: ${message}`);
+            // Simulate sending the campaign
+            const status = Math.random() < 0.9 ? 'SENT' : 'FAILED';
+            const log = new CommunicationLog({ campaignId, customerId: customer._id, status });
+            await log.save();
+            logs.push(log);
+            console.log(`Log saved: ${log._id}`);
+
+            // Simulate delivery receipt callback
+            await axios.post('http://localhost:8000/api/vendor/delivery-receipt', {
+                logId: log._id,
+                status
+            });
+            console.log(`Delivery receipt sent for logId: ${log._id}, status: ${status}`);
+        }
+
+        res.status(200).json({ message: 'Bulk messages sent successfully', logs });
     } catch (error) {
-      res.status(500).json({ message: 'Error updating delivery receipt', error });
+        console.error('Error sending bulk messages:', error);
+        res.status(500).json({ message: 'Error sending bulk messages', error: error.message });
     }
-  };
-  
+};
+
+export const deliveryReceipt = async (req, res) => {
+    const { logId, status } = req.body;
+
+    try {
+        console.log(`Processing delivery receipt for logId: ${logId}, status: ${status}`);
+        const log = await CommunicationLog.findById(logId);
+        if (!log) {
+            console.error(`Log not found: ${logId}`);
+            return res.status(404).json({ message: 'Log not found' });
+        }
+
+        log.status = status;
+        await log.save();
+        console.log(`Log status updated: ${log._id}, status: ${status}`);
+
+        res.status(200).json({ message: 'Delivery receipt processed successfully', log });
+    } catch (error) {
+        console.error('Error processing delivery receipt:', error);
+        res.status(500).json({ message: 'Error processing delivery receipt', error: error.message });
+    }
+};

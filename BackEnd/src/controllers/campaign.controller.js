@@ -81,11 +81,11 @@ export const sendCampaign = async (req, res) => {
       logs.push(log);
     }
     
-        // const response = await axios.post('http://localhost:5000/api/vendor/send-bulk-messages', {
-        //     campaignId,
-        //     customers,
-        // });
-        // console.log('response:', response.data);
+    const response = await axios.post('https://mini-crm-6gp2.onrender.com/api/vendor/send-bulk-messages', {
+      campaignId,
+      customers,
+  });
+  console.log('response:', response.data);
 
     // Update campaign attributes based on response
     campaign.totalAudienceSize = customers.length;
