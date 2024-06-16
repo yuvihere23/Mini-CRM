@@ -98,7 +98,7 @@ GET /api/campaigns/list
 ```
 #### Communication Logs
 ```http
- GET /api/communications/send/logs/:campaignId
+GET /api/communications/send/logs/:campaignId
 ```
 ```http
 GET /api/communications/logs
