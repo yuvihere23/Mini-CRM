@@ -6,6 +6,8 @@ This is the frontend application for the Mini CRM project, built with React and 
 
 Click [Here](https://mini-crm-five.vercel.app/) to see the live demo of the project
 
+If Login didn't work for the firts time give it a second try and wait for it as its loading....
+
 ## Features
 
 - User Authentication
