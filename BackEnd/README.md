@@ -63,52 +63,52 @@ To start the development server
 POST /api/auth/login
 ```
  ```http
-    POST /api/auth/signup
+POST /api/auth/signup
 ```
 #### Customers
 
 ```http
-    POST /api/customer/create
+POST /api/customer/create
 ```
 ```http
-    GET /api/customer/getCustomerCount
+GET /api/customer/getCustomerCount
 ```
 #### Orders
 ```http
-    POST /api/order/create
+POST /api/order/create
 ```
 ```http
-    GET /api/order/count
+GET /api/order/count
 ```
 #### Campaign Management
 ```http
-    POST /api/campaigns/create
+POST /api/campaigns/create
 ```
 ```http
-    POST /api/campaigns/send/:campaignId
+POST /api/campaigns/send/:campaignId
 ```
 ```http
-    GET /api/campaigns/get/:campaignId
+GET /api/campaigns/get/:campaignId
 ```
 ```http
-    GET /api/campaigns/audience-size/:campaignId
+GET /api/campaigns/audience-size/:campaignId
 ```
 ```http
-    GET /api/campaigns/list
+GET /api/campaigns/list
 ```
 #### Communication Logs
 ```http
-    GET /api/communications/send/logs/:campaignId
+ GET /api/communications/send/logs/:campaignId
 ```
 ```http
-    GET /api/communications/logs
+GET /api/communications/logs
 ```
 #### Vendor Api
 ```http
-    POST /api/vendor/send-bulk-messages
+POST /api/vendor/send-bulk-messages
 ```
 ```http
-    POST /api/vendor/delivery-receipt
+POST /api/vendor/delivery-receipt
 ```
 
 
