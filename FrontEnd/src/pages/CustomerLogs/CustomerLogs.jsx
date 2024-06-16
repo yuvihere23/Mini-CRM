@@ -10,6 +10,7 @@ const CommunicationLogCard = () => {
       try {
         const response = await axios.get(`${import.meta.env.VITE_API_URL}/api/communications/logs`);
         setCommunicationLogs(response.data.logs);
+        console.log(response);
       } catch (error) {
         console.error('Error fetching communication logs:', error);
       }
@@ -24,8 +25,8 @@ const CommunicationLogCard = () => {
         {communicationLogs.map((log) => (
           <div key={log._id} className="rounded-lg overflow-hidden shadow-md bg-white w-full">
             <div className="p-4">
-              <h5 className="text-lg font-semibold mb-2">Campaign: {log.campaignId.name}</h5>
-              <p className="text-sm mb-2">Customer: {log.customerId.name}</p>
+              <h5 className="text-lg font-semibold mb-2">Campaign: {log.campaignId?.name}</h5>
+              <p className="text-sm mb-2">Customer: {log.customerId?.name}</p>
               <p className="text-sm">Status: {log.status}</p>
             </div>
           </div>

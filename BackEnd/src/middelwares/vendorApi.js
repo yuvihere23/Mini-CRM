@@ -10,7 +10,7 @@ export const sendBulkMessages = async (req, res) => {
         for (const customer of customers) {
             const message = `Hi ${customer.name}, here is 10% off on your next order`;
             console.log(`Sending message to customer: ${customer._id}, message: ${message}`);
-            // Simulate sending the campaign
+            
             const status = Math.random() < 0.9 ? 'SENT' : 'FAILED';
             const log = new CommunicationLog({ campaignId, customerId: customer._id, status });
             await log.save();
