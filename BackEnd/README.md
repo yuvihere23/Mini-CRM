@@ -60,7 +60,7 @@ To start the development server
 #### Login User
 
 ```http
-    POST /api/auth/login
+POST /api/auth/login
 ```
  ```http
     POST /api/auth/signup
