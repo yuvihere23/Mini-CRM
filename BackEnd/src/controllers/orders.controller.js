@@ -11,10 +11,7 @@ export const createOrder = async (req, res, next) => {
    throw new Error('All fields are required!');
   }
 
-  if (!mongoose.Types.ObjectId.isValid(customerId)) {
-    return next(new ApiError(400, 'Invalid customerId format'));
-  }
-  console.log('customerId:', customerId);
+  
 
   try {
     const customer = await Customer.findById(customerId);
